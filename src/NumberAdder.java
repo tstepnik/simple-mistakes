@@ -13,22 +13,21 @@ public class NumberAdder {
         List<Double> numbers = new ArrayList<>();
         Scanner input = new Scanner(System.in);
         double number = 0;
+        boolean exception = true;
         do {
             System.out.println("Podaj liczbę (liczba ujemna kończy wprowadzanie):");
-            boolean exception = true;
-            while (exception) {
                 try {
                     number = input.nextDouble();
                     exception = false;
+                    if (number >= 0) {
+                        numbers.add(number);
+                    }
                 } catch (InputMismatchException i) {
                     System.err.println("Możesz podawać tylko liczby dziesiętne,tym razem wpisz poprawną wartość:");
                     input.nextLine();
                 }
-            }
-            if (number >= 0) {
-                numbers.add(number);
-            }
-        } while (number >= 0);
+
+        } while (number >= 0 || exception);
         return numbers;
     }
 
